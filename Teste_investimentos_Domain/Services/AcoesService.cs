@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Teste_investimentos_Domain.Exceptions;
 using Teste_investimentos_Domain.Interfaces;
 using Teste_investimentos_Domain.Models;
 
@@ -24,7 +25,16 @@ namespace Teste_investimentos_Domain.Services
 
         public void CompraAcao(CompraAcao request)
         {
-            throw new NotImplementedException();
+            var acaoExiste = _repository.VerificarSeAcaoExiste(request.IdAcao);
+
+            if (!acaoExiste)
+            {
+                throw new AcaoNaoEncontradaException();
+            }
+
+            var acao = new CompraAcaoCompleta(request);
+
+            _repository.CompraAcao(acao);
         }
 
         public Cotacao CotacaoAcao()
@@ -34,7 +44,16 @@ namespace Teste_investimentos_Domain.Services
 
         public void VendaAcao(VendaAcao request)
         {
-            throw new NotImplementedException();
+            var acaoExiste = _repository.VerificarSeAcaoExiste(request.IdAcao);
+
+            if (!acaoExiste)
+            {
+                throw new AcaoNaoEncontradaException();
+            }
+
+            var acao = new VendaAcaoCompleta(request);
+
+            _repository.VendaAcao(acao);
         }
     }
 }
