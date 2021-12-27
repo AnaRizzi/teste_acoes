@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Teste_investimentos_Domain.Models;
 using Teste_investimentos_Domain.Services;
 
@@ -34,7 +31,7 @@ namespace Teste_investimentos.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -50,7 +47,7 @@ namespace Teste_investimentos.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -82,7 +79,7 @@ namespace Teste_investimentos.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return BadRequest(ex.Message);
             }
         }
     }
